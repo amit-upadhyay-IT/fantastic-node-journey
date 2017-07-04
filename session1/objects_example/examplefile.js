@@ -23,3 +23,5 @@ function TreeHouse(name, tree, color)
 TreeHouse.prototype.owner = 'Amit Upadhyay';
 var amitTreeHouse = new TreeHouse('Babu', 'Oak', 'Yellow');
 console.log(amitTreeHouse.owner);
+
+dir(TreeHouse);
