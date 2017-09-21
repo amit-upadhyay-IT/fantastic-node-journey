@@ -1,8 +1,6 @@
 # fantastic-node-journey
 
-A journey of mastering node
+A journey towards node
 
 -Amit Upadhyay
 
-
-fantastic-node-journey
