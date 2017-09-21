@@ -1,4 +1,4 @@
-#### ever thought of using NPM as build tool?
+### ever thought of using NPM as build tool?
 We can use npm as a build tool, which I highly discourage doing unless and until we have a very small and isolated app. If you are going to use package.json or npm as a build tool, then number of options you are going to have is limited.
 I would rather recommend using modules like Grunt, Gulp or Broccoli.
 
