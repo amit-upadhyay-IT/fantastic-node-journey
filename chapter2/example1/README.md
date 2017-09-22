@@ -18,3 +18,21 @@ options and the nth argument should be the callback function. And that callback 
 
 If you don't pass 'UTF-8' as argument, then the output would still come and the buffer would get printed, but that buffer isn't readable. We want to print something written in english
 for a computer that's UTF-8 encoded text. So we need to pass the second arg UTF-8.
+
+Consider this example:
+
+	var fs = require('fs');
+	fs.readFile('./package.json', 'UTF-8', function(err, data){
+	    if (err) throw err;
+	    var myPackage = JSON.parse(data);// converted the string 'data' to json
+	    console.log(myPackage.description);// name is an property in package.json
+	});
+
+	console.log('Another independent operation!');
+
+The output is:
+
+Another independent operation!
+file reader app
+
+This happens because the readFile being a blocking operation is pushed into the event queue/ callback queue, thus console.log(); gets executed first. Si this way the whole process is non-blocking.
