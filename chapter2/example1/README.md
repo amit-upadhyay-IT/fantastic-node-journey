@@ -19,7 +19,7 @@ options and the nth argument should be the callback function. And that callback 
 If you don't pass 'UTF-8' as argument, then the output would still come and the buffer would get printed, but that buffer isn't readable. We want to print something written in english
 for a computer that's UTF-8 encoded text. So we need to pass the second arg UTF-8.
 
-Consider this example:
+##### Consider this example:
 
 	var fs = require('fs');
 	fs.readFile('./package.json', 'UTF-8', function(err, data){
@@ -36,3 +36,22 @@ The output is:
     file reader app
 
 This happens because the readFile being a blocking operation is pushed into the event queue/ callback queue, thus console.log(); gets executed first. Si this way the whole process is non-blocking.
+
+##### Consider this:
+
+	var contents = fs.readFileSync('./package.json', 'UTF-8');
+	console.log(JSON.parse(contents).description);
+
+	console.log('Another independent operation!');
+Output:
+
+	file reader app
+	Another independent operation!
+
+As from the output you can see there are no functions which are enqueued to the callback queue. So first the readFileSync (blocking code) gets executed. This is a traditional way of coding where we wait on all the IO operations.
+
+##### NOTE: 
+For a Async version we need to pass the callback function which is not same for Sync version.
+
+Any IO operation related API method will have two flavours a) Async way b) Sync way.
+
