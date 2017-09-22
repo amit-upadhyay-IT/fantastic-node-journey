@@ -1,6 +1,6 @@
 {
   "name": "amitcalcapp",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "calc app",
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,10 @@
   "keywords": [
     "calc"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/amit-upadhyay-IT/fantastic-node-journey/tree/master/chapter2/example2"
+  },
   "author": "amit",
   "license": "MIT"
 }
