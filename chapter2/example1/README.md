@@ -32,7 +32,7 @@ Consider this example:
 
 The output is:
 
-Another independent operation!
-file reader app
+    Another independent operation!
+    file reader app
 
 This happens because the readFile being a blocking operation is pushed into the event queue/ callback queue, thus console.log(); gets executed first. Si this way the whole process is non-blocking.
