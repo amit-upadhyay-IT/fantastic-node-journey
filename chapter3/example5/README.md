@@ -18,7 +18,42 @@ var homeRun = function()
 eventEmitter.on('swing',homeRun); // yay!!
 
 // Ball pitched.. So lets emit a 'swing'
-eventEmitter.emit('swing');
+eventEmitter.emit('swing'); // causes the homeRun method to run.
 
 ```
 
+Output: `Home Run!!`
+
+In the above program we registered an event (‘ swing’) passing the callback ( homeRun()). And in the last line we Emitted the event (‘ swing’).
+
+To know more about events, visit [here](https://nodejs.org/api/events.html).
+
+### Example 2
+
+Implementing event emittor in a class.
+
+Eg:
+
+```js
+
+var events = require('events');
+
+function Batter(name) {
+  this.name = name;
+
+//Invoking the EventEmitter's constructor with Batter.
+  this.swing = function()
+  {
+   this.emit('swing');
+  }
+}
+
+Batter.prototype = events.EventEmitter.prototype; // Inheriting EventEmitters methods into Batter. ex: 'on', as user below
+var batter = new Batter('Babe Ruth');
+
+batter.on('swing', function() {
+    console.log('It is a Strrikkkeee!!!!');
+  });
+batter.swing();
+
+```
