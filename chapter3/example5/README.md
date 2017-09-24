@@ -1,8 +1,10 @@
+## Event Emitter Pattern
+
 In the TCP server code, we can see some evernts are registered, eg: `socket.on('data', cb);` so there the `cb` (callback) function gets invoked when data comes in from the client. So we can say that `data` is an event which is emitted by the client and when this event occurrs then we execute the `cb`(callback) function.
 
 In node we have a code module called `events`, using which we can create custom events too.
 
-Eg:
+#### Example 1:
 
 ```js
 
@@ -24,15 +26,15 @@ eventEmitter.emit('swing'); // causes the homeRun method to run.
 
 Output: `Home Run!!`
 
-In the above program we registered an event (‘ swing’) passing the callback ( homeRun()). And in the last line we Emitted the event (‘ swing’).
+In the above program we registered an event (‘swing’) passing the callback ( homeRun()). And in the last line we Emitted the event (‘ swing’). So `eventEmitter.emit` is responsible for executing the callback function passed in `.on` method.
 
 To know more about events, visit [here](https://nodejs.org/api/events.html).
 
-### Example 2
+## Implementing event emitter in a class.
 
-Implementing event emittor in a class.
 
-Eg:
+
+#### Example 2:
 
 ```js
 
@@ -57,3 +59,5 @@ batter.on('swing', function() {
 batter.swing();
 
 ```
+
+Output: `It is a Strrikkkeee!!!!`
