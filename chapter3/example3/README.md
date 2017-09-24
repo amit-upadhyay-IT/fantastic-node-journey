@@ -3,7 +3,7 @@ TCP server is one level below HTTP. It internally uses the 'net' module. Sockets
 The process of setting up the TCP server is pretty straight forward using the 'net' module.
 
 Eg:
-
+```js
 	var net = require('net');
 	var port = 1235;
 
@@ -22,5 +22,6 @@ Eg:
 	net.listen(port, "localhost");
 
 	console.log("Server Running on "+port+".\nLaunch http://localhost:"+port);
+```
 
 Note that while creating a HTTP server, in the callback function we had request and response objects but here we have a socket object.
