@@ -11,8 +11,8 @@ net.createServer(function(socket) {
     socket.on('close', function(data) {
         console.log('A client disconnected');
     });
-});
+}).listen(port, "localhost");
 
-net.listen(port, "localhost");
+//net.listen(port, "localhost");
 
 console.log("Server Running on "+port+".\nLaunch http://localhost:"+port);
