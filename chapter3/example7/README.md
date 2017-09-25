@@ -30,7 +30,7 @@ readable.on('data', function(chunk) {
 ```
 
 
-**Readable Streams** are abstraction from a source of data to read from. That is: data flows out from Readable Stream. A Readable Stream will not start emitting data until you have indicated that you are ready to receive it.
+Readable Streams** are abstraction from a source of data to read from. That is: data flows out from Readable Stream. A Readable Stream will not start emitting data until you have indicated that you are ready to receive it.
 
 Two modes:
 - flowing: data is read form the source and provided to your program as soon as possible.
@@ -149,3 +149,9 @@ Important methods and events for writable streams:
 - **Duplex streams** are streams that are both readable and writable, Eg: tcp socket.
 
 - **Transform streams** are Duplex streams where the output is someway computed from the input. Eg: crypto streams.
+
+## Path module
+
+[Here](https://nodejs.org/api/path.html) you can find more about path module. The path module provides utilities for working with file and directory paths. It's mostly used with __dirname and __filename. There are scenarios when we want to access file system in more elegant way there we use it.
+
+[Here](./index.js) is an example on Readable Streams.
