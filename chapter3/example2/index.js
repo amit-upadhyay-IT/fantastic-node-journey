@@ -13,12 +13,13 @@ var server = http.createServer(function(request, response) {
         respond(response, 'You reached /amit');
     else
         respond(response, 'OK');
+
 });
 
 function respond(response, message)
 {
     response.writeHeader(200,
-        {"Content-Type": "text/plain"}
+        {"Content-Type": "text/plain"}// when we use other frameworks available out there like express we don't need to take care about specifying type-content or many other things, most of the things are taken care by the frameworks
     );
     response.write(message);
     response.end();
