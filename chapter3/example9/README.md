@@ -6,7 +6,7 @@ If you run `index.js`, you will see something like this:
 
 	received upload:
 
-	{ fields: { title: '' },
+	{ fields: { title: 'sasdf' },
 	  files: 
 	   { upload: 
 	      File {
@@ -15,12 +15,18 @@ If you run `index.js`, you will see something like this:
 		_eventsCount: 0,
 		_maxListeners: undefined,
 		size: 232,
-		path: '/tmp/upload_315cc8f237df0ed87a40aad07da9489d',
+		path: 'upload/upload_29534ab62167314f887b9b6bf6f3be8b',
 		name: 'example.cpp',
 		type: 'text/x-c++src',
 		hash: null,
-		lastModifiedDate: 2017-09-25T19:09:31.511Z,
+		lastModifiedDate: 2017-09-25T19:21:32.590Z,
 		_writeStream: [Object] } } }
 
 
-As you can see, how simple it gets handeling file uploads.
+As you can see, how simple it gets handeling file uploads. If you see the example at the github repo, there you wouldn't find 
+```js
+    form.uploadDir = './upload';
+```
+Setting the property `uploadDir` on the form makes the file available at `upload` folder, which is uploaded by the client.
+
+[This](https://www.sitepoint.com/introduction-to-streams/) is one beautiful link written about streams.
