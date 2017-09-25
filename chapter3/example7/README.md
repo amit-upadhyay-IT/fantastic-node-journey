@@ -176,3 +176,10 @@ The data from the `data.txt` is copied to `output.txt` file. If `data.txt` is re
 ### Where is the big real time use case of streams?
 
 One major place is `File Uploads`, so we have people who are uploading GBs of data (youtube videos, dropbox upload, facebook pics). This is a perfect place where stream comes into pictures. So we are not burdening the main application logic to wait till the upload is completed (and this ryan dahl didn't want).
+
+
+Using streams is one of the powerful process of handeling file systems.
+
+Some people serve their server side files using compression called as gzip compression. The browser on the client side is smart enough to unzip file. All your server needs to do is, zip file and send it across to client. Once we have a particular file zipped up, we can save the network bandwidth. Instead of transmitting a big file we are transmitting a small one because the browser is smart enough to unzip it.
+
+[Here](./index3.js) is an example where we use streams to accomplish the above concept.
