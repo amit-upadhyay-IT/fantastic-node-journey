@@ -110,3 +110,42 @@ rs.on('end', function(){
 
 ```
 
+#### A still better way:
+
+```js
+var rs = ...//new readable stream
+var ws = ...// new writable stream
+
+rs.pipe(ws); // it takes care of managing everything.
+
+```
+
+#### or optionally:
+
+```js
+var rs = ...//new readable stream
+var ws = ...// new writable stream
+
+rs.pipe(ws, {end: false});//piping is asynchronous, anything non-blocking you write below it will get executed first.
+
+
+// so this way we know when the piping is completed.
+rs.on('end', function(){
+	// do something here.
+	ws.end();
+});
+
+
+```
+
+Important methods and events for writable streams:
+
+- pipe: event emitted when some readable stream is piping to this writable.
+- unpipe: when the readable that was "piping" has been unpiped.
+- error: when error has been thrown.
+
+## Duplex and Transform streams
+
+- **Duplex streams** are streams that are both readable and writable, Eg: tcp socket.
+
+- **Transform streams** are Duplex streams where the output is someway computed from the input. Eg: crypto streams.
