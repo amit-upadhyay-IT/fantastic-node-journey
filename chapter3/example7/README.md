@@ -38,12 +38,75 @@ Two modes:
 
 
 You can switch to following mode:
->> Listening to the 'data' event.
->> Calling resume()
->> Using pipe()
+> Listening to the 'data' event.
+> Calling resume()
+> Using pipe()
 
 We can switch to pause mode by:
->> if pipe is not used them, calling pause()
->> if pipe is used then remove all data event handlers and removing all pipe destinations by using unpipe()
+> if pipe is not used them, calling pause()
+> if pipe is used then remove all data event handlers and removing all pipe destinations by using unpipe()
 
+
+## Writable Streams
+
+Writable streams is an abstraction of a destination you want to write data to.
+
+Important methods and events for Writable Streams:
+- write(chunk, encoding, callback)
+> chunk: the buffer or string of data to be written.
+> encoding: the encoding type
+> callback: called after the chunk has been properly handled.
+> returns False: Not appropriate to write to the destination as yet last write data has been buffered internally. This buffer is stored in memory.
+> returns True: if it is appropriate to write now.
+
+- drain: if write() method returns False, "drain" event tells you when it is ok to write again.
+- end(chunk, encoding, callback): When nothing more to write.
+
+
+## Writing data from Readable to Writable : pipe()
+
+#### First way:
+
+```js
+
+var rs = ...//new readable stream
+var ws = ...// new writable stream
+
+rs.on('data', function(data) {
+	ws.write(data);
+});
+
+rs.on('end', function(){
+	ws.end();
+});
+
+```
+
+
+#### A better way:
+
+```js
+var rs = ...//new readable stream
+var ws = ...// new writable stream
+
+rs.on('data', function(data) {
+	if (!ws.write(data))
+	{
+		rs.pause();
+	}
+});
+
+
+rs.on('drain', function() {
+	rs.resume();
+});
+
+
+
+rs.on('end', function(){
+	ws.end();
+});
+
+
+```
 
