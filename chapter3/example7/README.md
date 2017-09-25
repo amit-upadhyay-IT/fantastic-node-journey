@@ -27,6 +27,7 @@ var readable = getSomeReadableStream();
 readable.on('data', function(chunk) {
 	console.log(chunk);
 });
+```
 
 
 **Readable Streams** are abstraction from a source of data to read from. That is: data flows out from Readable Stream. A Readable Stream will not start emitting data until you have indicated that you are ready to receive it.
