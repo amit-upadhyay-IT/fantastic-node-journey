@@ -9,7 +9,7 @@ var server = http.createServer(function(req, res) {
     if (url == '/' && method == 'GET')// we are dispatching a page
     {
         var page = fs.readFileSync('upld.html');
-        res.writeHead(200, {
+        res.writeHead(200, { // writing this is important otherwise the html file content is going to be rendered as text/plain
             'Content-Type': 'text/html'
         });
         res.end(page);
