@@ -155,3 +155,24 @@ Important methods and events for writable streams:
 [Here](https://nodejs.org/api/path.html) you can find more about path module. The path module provides utilities for working with file and directory paths. It's mostly used with __dirname and __filename. There are scenarios when we want to access file system in more elegant way there we use it.
 
 [Here](./index.js) is an example on Readable Streams.
+
+### Streams using pipe()
+
+#### Example:
+
+```js
+
+var fs = require('fs');
+
+var readableStream = fs.createReadStream('data.txt');
+var writableStream = fs.createWriteStream('output.txt');
+
+readableStream.pipe(writableStream);
+
+```
+
+The data from the `data.txt` is copied to `output.txt` file. If `data.txt` is really a huge file sometimes if we open `output.txt` file it keeps updating the file, so that's how streams works.
+
+### Where is the big real time use case of streams?
+
+One major place is `File Uploads`, so we have people who are uploading GBs of data (youtube videos, dropbox upload, facebook pics). This is a perfect place where stream comes into pictures. So we are not burdening the main application logic to wait till the upload is completed (and this ryan dahl didn't want).
