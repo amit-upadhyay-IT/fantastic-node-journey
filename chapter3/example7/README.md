@@ -182,4 +182,23 @@ Using streams is one of the powerful process of handeling file systems.
 
 Some people serve their server side files using compression called as gzip compression. The browser on the client side is smart enough to unzip file. All your server needs to do is, zip file and send it across to client. Once we have a particular file zipped up, we can save the network bandwidth. Instead of transmitting a big file we are transmitting a small one because the browser is smart enough to unzip it.
 
-[Here](./index3.js) is an example where we use streams to accomplish the above concept.
+[Here](./index3.js) is an example where we use streams to accomplish the above concept. [Here](./bower_components/angular), you can see size of `angular.js` file, `angular.min.js` file (1/8th of angular.js file) and `angular.min.js.gzip` file (1/22th of  anjular.js file). So we are dispatching a 1/22th size of the main file over the network because the browser is smart enough to decompress it.
+
+
+```js
+
+var fs = require('fs');
+var zlib = require('zlib');
+
+var readableStream = fs.createReadStream('./bower_components/angular/angular.min.js.gzip');
+
+readableStream
+    .pipe(zlib.createGunzip())
+    .pipe(fs.createWriteStream('angular.min.js'));
+
+```
+
+
+
+
+The point is that the streams can be as powerful as piping content from one thing to another.
