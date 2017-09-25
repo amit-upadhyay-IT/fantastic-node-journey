@@ -30,3 +30,5 @@ var server = http.createServer(function(req, res) {
 });
 
 server.listen(8000);
+
+console.log('server is connected at ', 8000);
