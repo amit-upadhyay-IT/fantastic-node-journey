@@ -12,8 +12,17 @@ Since other types of devices, such as printers and routers, can be involved in n
 
 While sending data over a network, it moves down through the OSI stack and is transmitted over the transmission media. When the data is received by a node, such as another computer on the network, it moves up through the OSI stack until it is again in a form that can be accessed by a user on that computer.
 
-Each of the layers in the OSI model is responsible for certain aspect of getting user data in to a format that can be transmitted on the network. Some layers are for establishing and maintaining the connection between the communicating nodes, and other layers are responsible for the addressing of the data so that it can be determined where the data originated (on which node) and where the data's destination is.
+Each of the layers in the OSI model is responsible for certain aspect of getting user data in to a format that can be transmitted on the network. **Some layers are for establishing and maintaining the connection between the communicating nodes, and other layers are responsible for the addressing of the data so that it can be determined where the data originated (on which node) and where the data's destination is**.
 
 An important aspect of the OSI model is that each layer in the stack provides services to the layer directly above it. Only the Application Layer, which is at the top of the stack, would not provide services to a higher-level layer.
 
 The process of moving user data down to OSI stack on a sending node (again, such as a computer) is called encapsulation. The process of moving raw data received by node a node up the OSI stack is referred to as de-encapsulation.
+
+To encapsulate means to enclose or surround, and this is what happens to data that is created at the application layer and then moves down through the other layers of OSI model. A header, which is a segment of information affixed to the beginning of the data, is generated at each layer of the OSI model, except for the physical layer.
+This means that the data is encapsulated in succession of headers - first the Application layer header, then Presentation layer header, and so on. When the data reaches the physical layer, it is like a candy bar that has been enclosed in several different wrappers.
+
+When the data is transmitted to a receiving node, such as a computer, the data travels up the OSI stack and each header is stripped off of the data. First, the Dala Link layer header is removed, then the Network layer header, and so on. Also, the headers are not just removed by receiving computer; the header information is read and used to determine what the receiving computer should do with the received data at each layer of OSI model.
+
+In OSI model, the sending computer uses these headers to communicate with the receiving computer and provide the receiving computer with useful. As the data travels up the levels of the peer computer, each header is removed by its equivalent protocol. These headers contain different information depending on the layer they receive the header from , but tell the peer layer important information, including packet size, frames, and datagrams.
+
+Control is passed from one layer to the next, starting at the application layer in one station and proceeding to the bottom layer, over the channel to the next station and back up the hierarchy. Each layer's header and data are called packages. Although it may seem confusing, each layer has a different name for its service data unit.
