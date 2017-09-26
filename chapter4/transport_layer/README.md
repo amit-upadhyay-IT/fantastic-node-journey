@@ -50,17 +50,21 @@ We send data back and forth over the connection by speaking to one another over 
 
 TCP provides a point-to-point channel for applications that require reliable communications. The HTTP, FTP and Telnet are all examples of application that require a reliable communication channel. The order in which the data is sent and received over the network is critical to the success of these applications. When HTTP is used to read from a URL, the data must be received in the order in which is was sent. Otherwise, we end up with a jumbled HTML file, a corrupt zip file, or some other invalid information.
 
-**Defination**: TCP is a connection-based protocol that provides a reliable flow of data between two computers.
+**Definition**: TCP is a connection-based protocol that provides a reliable flow of data between two computers.
 
 Transport protocols are used to deliver information from one port to another and thereby enable communication between application programs. They use either a connection-oriented or connectionless method of communication. TCP is a connection oriented protocol and UDP is a connectionless transport protocol.
 
-The reliablity of communication between the source and destination programs is ensured through error-detection and error-correction mechanism that are implemented with TCP. TCP implements the connection as a stream of bytes from source to destination. This feature allows the use of the stream I/O classes provided by java.io.
+The reliability of communication between the source and destination programs is ensured through error-detection and error-correction mechanism that are implemented with TCP. TCP implements the connection as a stream of bytes from source to destination. This feature allows the use of the stream I/O classes provided by java.io.
 
 ## UDP [User Datagram Protocol]
 
-The UDP protocols provides for communication that is not guaranteed between two applications on the network. UDP is not connection-based like TCP. But, it sends independent packets of data (called datagrams) from one application to another. Sending datagrams is much like sending a letter throught the postal service: The order of  delivery is not important and is not guaranteed, and each message is independent of any other.
+The UDP protocols provides for communication that is not guaranteed between two applications on the network. UDP is not connection-based like TCP. But, it sends independent packets of data (called datagrams) from one application to another. Sending datagrams is much like sending a letter through the postal service: The order of  delivery is not important and is not guaranteed, and each message is independent of any other.
 
-**Defination**: UDP is a protocol that sends independent packets of data, called datagrams, from one computer to another with no guarantees about arrival UDP is not connection-based.
+**Definition**: UDP is a protocol that sends independent packets of data, called datagrams, from one computer to another with no guarantees about arrival UDP is not connection-based.
 
 For many applications, the guarantee of reliability is critical to the success of the transfer of information from one end of the connection to the other. However, other forms of communication don't require such strict standards. In fact, they may be slowed down by the extra overhead or the reliable connection may invalidate service altogether.
 
+Consider, for example, a clock server that sends the current time to its client when required to do so. If the client misses a packet, it doesn't really make sense to resend it because the time will be incorrect when the client receives it one the second try. If the client makes two requests and receives packets from the server out of order, it doesn't really mater because the client can figure out that the packets are out of order and make other request. The reliability of TCP is unnecessary in this instance because it causes performance degradation and many hinder the usefulness of the service.
+Another example of a service that doesn't need the guarantee of a reliable channel is the ping command. The purpose of the ping command is to test the communication between two programs over the network. In fact, ping needs to know about dropped or out-of-order packets to determine how good or bad the connection is. A reliable channel would invalidate this service altogether.
+
+The UDP connectionless protocol differs from the TCP connection-oriented protocol in that it doesn't establish a link for the duration of the connection. An example of a connectionloess protocol is postal main. TO main something, you just write down a destination address (and an option return address) on the envelope of the item you're sending and drop it in a mailbox. When using UDP, an application program writes the destination port and IP address on a datagram and then sends the datagram to its destination. UDP is less reliable than TCP because there are no delivery-assurance or error-detection and error-correction mechanisms built into the protocol.
