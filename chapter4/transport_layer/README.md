@@ -38,3 +38,29 @@ It also ensures that the data arrives at the application on the host for which i
 
 - Provides communication session management between the nodes/computers.
 - Defines the level of service and status of the connection used when transporting data.
+
+
+# TCP and UDP
+Computers running on internet communicate to each other using either the transmission control protocol (TCP) or the User Datagram Protocol (UDP). When we write Java programs that communicate over the network, we are programming at the application layer. Typically, we don't need to concern with the TCP and UDP layers. Instead, we can use the classes in the java.net package. These classes provide system-independent networks communication. However, to decide which java classes our program should use, we do need to understand how TCP and UDP differ.
+
+## TCP [Transmission Control Protocol]
+
+When two applications want to communicate to each other reliably, they establish a connection and send data back and forth over the connection. This is analogous to making a telephone call. If we want to speak to a person who is in another country, a connection is established when we dial the phone number and the other party answers.
+We send data back and forth over the connection by speaking to one another over the phone lines. Like the phone company, TCP guarantees that data sent from one end of the connection actually gets to the other end and in the same order it was sent. Otherwise, an error is reported.
+
+TCP provides a point-to-point channel for applications that require reliable communications. The HTTP, FTP and Telnet are all examples of application that require a reliable communication channel. The order in which the data is sent and received over the network is critical to the success of these applications. When HTTP is used to read from a URL, the data must be received in the order in which is was sent. Otherwise, we end up with a jumbled HTML file, a corrupt zip file, or some other invalid information.
+
+**Defination**: TCP is a connection-based protocol that provides a reliable flow of data between two computers.
+
+Transport protocols are used to deliver information from one port to another and thereby enable communication between application programs. They use either a connection-oriented or connectionless method of communication. TCP is a connection oriented protocol and UDP is a connectionless transport protocol.
+
+The reliablity of communication between the source and destination programs is ensured through error-detection and error-correction mechanism that are implemented with TCP. TCP implements the connection as a stream of bytes from source to destination. This feature allows the use of the stream I/O classes provided by java.io.
+
+## UDP [User Datagram Protocol]
+
+The UDP protocols provides for communication that is not guaranteed between two applications on the network. UDP is not connection-based like TCP. But, it sends independent packets of data (called datagrams) from one application to another. Sending datagrams is much like sending a letter throught the postal service: The order of  delivery is not important and is not guaranteed, and each message is independent of any other.
+
+**Defination**: UDP is a protocol that sends independent packets of data, called datagrams, from one computer to another with no guarantees about arrival UDP is not connection-based.
+
+For many applications, the guarantee of reliability is critical to the success of the transfer of information from one end of the connection to the other. However, other forms of communication don't require such strict standards. In fact, they may be slowed down by the extra overhead or the reliable connection may invalidate service altogether.
+
