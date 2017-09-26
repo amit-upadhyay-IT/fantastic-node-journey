@@ -10,7 +10,7 @@ stream.setEncoding('UTF-8');// to make the stream readable
 
 var chunks = 0;
 
-stream.on('data', function(data) {
+stream.on('data', function(data) {// instead of loading it with chunk by chunk we could have directly used pipe(), but this example is giving more better view of streams
     console.log('chunk', data);
     console.log('loaded part of the file');
     console.log('************************************************');
