@@ -26,3 +26,15 @@ When the data is transmitted to a receiving node, such as a computer, the data t
 In OSI model, the sending computer uses these headers to communicate with the receiving computer and provide the receiving computer with useful. As the data travels up the levels of the peer computer, each header is removed by its equivalent protocol. These headers contain different information depending on the layer they receive the header from , but tell the peer layer important information, including packet size, frames, and datagrams.
 
 Control is passed from one layer to the next, starting at the application layer in one station and proceeding to the bottom layer, over the channel to the next station and back up the hierarchy. Each layer's header and data are called packages. Although it may seem confusing, each layer has a different name for its service data unit.
+
+## TCP/IP model
+
+The TCP/IP model is a networking model with a set of communication protocols for the Internet and similar networks. It is commonly known as TCP/IP, because its Transmission Control Protocol (TCP) and Internet Protocol (IP) were the first networking protocol defined in this model. The TCP/IP model, similar to OSI model, has a set of layers. The OSI has seven layers and the TCP/IP has four or five layers depending on the different preferences. Some people use the Application, Transport, Internet and Network Access layer. Others split the Network Access layer into the Physical and data link components.
+The OSI model and the TCP/IP models were created independently. The TCP/IP network model represents reality in the world, whereas the OSI mode represents an ideal.o
+
+## Transport Layer in TCP/IP model
+Transport layer (also called Host-to-Host protocol) in the TCP/IP model provides more or less the same services with its equivalent Transport layer in the OSI model. This layer acts as delivery service used by the application layer. Again the two protocols used are TCP and UDP. The choice is made based on the application's transmission reliability requirements.
+It also ensures that the data arrives at the application on the host for which it is targeted. Transport layer manages the flow of traffic between two host or devices. The transport layer also handles all error detection and recovery. It uses checksums, acknowledgements, and timeouts to control transmission and end to end verification.
+
+- Provides communication session management between the nodes/computers.
+- Defines the level of service and status of the connection used when transporting data.
