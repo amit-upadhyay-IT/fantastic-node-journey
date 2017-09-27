@@ -119,14 +119,3 @@ socket.end('Hello Server');
 ```
 
 Using the net module I have created the client-server communication program. The programs are [tcp client](./client.js) and [tcp server](./server.js).
-
-# Secure Network Communication - TLS/SSL
-- You can use built-in 'tls' module for Transport Layer Security and SSL. Node uses OpenSSL for this.
-- To create a private key, on Command Line:
-> openssl genrsa -out ryans-key.pem 2048
-- Certificates are containers for the public/private key. This is usually either self-signed or signed by a Certification Authority.
-- To create the certificate, we first need a "Client Signing  Request" (CSR) file:
->openssl req -new -sha256 -key ryans-key.pem -out ryans-csr.pem
-- To create a self signed certificate with the CSR,
-> openssl x509 -req -in ryans-csr.pem -signkey ryans-key.pem -out ryans-cert.pem
-- Alternatively, you can get your certificate signed by a Certification Authority.
