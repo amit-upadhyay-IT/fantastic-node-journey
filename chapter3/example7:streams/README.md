@@ -56,9 +56,13 @@ Writable stream is an abstraction of a destination you want to write data to.
 Important methods and events for Writable Streams:
 - write(chunk, encoding, callback)
 > chunk: the buffer or string of data to be written.
+
 > encoding: the encoding type
+
 > callback: called after the chunk has been properly handled.
+
 > returns False: Not appropriate to write to the destination as yet last write data has been buffered internally. This buffer is stored in memory.
+
 > returns True: if it is appropriate to write now.
 
 - drain: if write() method returns False, "drain" event tells you when it is ok to write again.
