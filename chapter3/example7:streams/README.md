@@ -30,8 +30,9 @@ readable.on('data', function(chunk) {
 });
 ```
 
+## Readable Streams
 
-Readable Streams** are an abstraction from a source of data to read from. That is: data flows out from Readable Stream. A Readable Stream will not start emitting data until you have indicated that you are ready to receive it.
+These are an abstraction from a source of data to read from. That is: data flows out from Readable Stream. A Readable Stream will not start emitting data until you have indicated that you are ready to receive it.
 
 Two modes:
 - flowing: data is read from the source and provided to your program as soon as possible.
