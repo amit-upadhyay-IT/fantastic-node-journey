@@ -61,7 +61,7 @@ To know more we can study [net](https://nodejs.org/api/net.html) module.
 
 It is created in two ways:
 - By the user and user as a client:
-> Either by doing `new net.Socket()` (come config options can be passed, to know more refer [here](https://nodejs.org/api/net.html#net_new_net_socket_options))
+> Either by doing `new net.Socket()` (some config options can be passed, to know more refer [here](https://nodejs.org/api/net.html#net_new_net_socket_options))
 
 > Or by doing a net.createConnection(options[, connectionListener]): This is factory method that returns a new net.Socket object and also connects to the supplied port and address.
 
@@ -117,3 +117,16 @@ socket.end('Hello Server');
  * */
 
 ```
+
+Using the net module I have created the client-server communication program. The programs are [tcp client](./client.js) and [tcp server](./server.js).
+
+# Secure Network Communication - TLS/SSL
+- You can use built-in 'tls' module for Transport Layer Security and SSL. Node uses OpenSSL for this.
+- To create a private key, on Command Line:
+> openssl genrsa -out ryans-key.pem 2048
+- Certificates are containers for the public/private key. This is usually either self-signed or signed by a Certification Authority.
+- To create the certificate, we first need a "Client Signing  Request" (CSR) file:
+>openssl req -new -sha256 -key ryans-key.pem -out ryans-csr.pem
+- To create a self signed certificate with the CSR,
+> openssl x509 -req -in ryans-csr.pem -signkey ryans-key.pem -out ryans-cert.pem
+- Alternatively, you can get your certificate signed by a Certification Authority.

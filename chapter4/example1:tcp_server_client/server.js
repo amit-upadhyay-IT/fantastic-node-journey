@@ -12,7 +12,7 @@ var server = net.createServer(function(socket) {
 
     socket.on('data', function(data) {
         console.log('Data Received from : ' + socket.remoteAddress + ':' + data);
-        socket.write('Data Received :' + data);
+        socket.write('Data Received :' + data);// whatever data I get, I am writing it back to the socket which will then be sent to client.
     });
 
     socket.on('close', function(data) {
@@ -24,7 +24,9 @@ server.listen(port, host);// since this line executes synchronously we can clear
 console.log('Server listening on ' + host + ':' + port);
 
 
+/*
 // this gets executed after the server has been started
 server.on('connection', function(socket) {
     console.log('Connected: ', socket.remoteAddress+':' + socket.remotePort);
 });
+*/
