@@ -144,6 +144,8 @@ rs.on('end', function(){
 
 ```
 
+To know about `{end:false}` visit [here](https://nodejs.org/api/stream.html#stream_readable_pipe_destination_options).
+
 Important methods and events for writable streams:
 
 - pipe: event emitted when some readable stream is piping to this writable.
