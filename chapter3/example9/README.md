@@ -2,7 +2,7 @@
 
 A Node.js module for parsing form data, especially file uploads. To know more visit [here](https://github.com/felixge/node-formidable). The example in index.js is taken from the `node-formidable` github repo.
 
-If you run `index.js`, you will see something like this:
+If you run server and upload file successfully, you will see something like this:
 
 	received upload:
 
@@ -29,4 +29,4 @@ As you can see, how simple it gets handeling file uploads. If you see the exampl
 ```
 Setting the property `uploadDir` on the form makes the file available at `upload` folder, which is uploaded by the client.
 
-[This](https://www.sitepoint.com/introduction-to-streams/) is one beautiful link written about streams.
+[This](https://www.sitepoint.com/introduction-to-streams/) is one beautiful link about streams.
