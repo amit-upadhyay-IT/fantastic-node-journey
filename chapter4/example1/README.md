@@ -23,14 +23,14 @@ For network communication on Node.js, we use "net" module. The protocols which a
 ### TCP server object:
 Server has the following properties, events and methods
 
-- Methods:
-> listen(port[, host][, backlog][, callback]): This method makes the TCP server begin accepting connections on the specified PORT and HOST.
-> If HOST is omitted, server will accept connections to any IPv4 address and if PORT is 0, then random port is chosen. Once this method is called, the "listening" event is emitted.
-> The callback argument automatically works like the callback for the "listen" event.
-> Backlog is the max length of the queue of pending connection (default: 511) : ultimately decided by the OS.
-> close([callback]): Stops server from accepting new connections but keeps existing connections till they are terminated. The callback passed becomes the listener for the "close" event.
-> address(): returns the bound address, the address family name ('IPv4'..etc) and the port number.
-> getConnections([callback]): Asynchronously get the number of concurrent connections to the server. Callback takes two arguments: err and count.
+> Methods:
+- listen(port[, host][, backlog][, callback]): This method makes the TCP server begin accepting connections on the specified PORT and HOST.
+- If HOST is omitted, server will accept connections to any IPv4 address and if PORT is 0, then random port is chosen. Once this method is called, the "listening" event is emitted.
+- The callback argument automatically works like the callback for the "listen" event.
+- Backlog is the max length of the queue of pending connection (default: 511) : ultimately decided by the OS.
+- close([callback]): Stops server from accepting new connections but keeps existing connections till they are terminated. The callback passed becomes the listener for the "close" event.
+- address(): returns the bound address, the address family name ('IPv4'..etc) and the port number.
+- getConnections([callback]): Asynchronously get the number of concurrent connections to the server. Callback takes two arguments: err and count.
 
 ### TCP server Events:
 The TCP server as we already know from last chapter(chapter3) that it's a EventEmitter. Basically it has 4 events.
@@ -57,3 +57,27 @@ To know more we can study [net](https://nodejs.org/api/net.html) module.
 	    console.log("Server is listening on Port 3000");
 });
 ```
+**TCP Socket Object**: The one which gets passed with every single instance of your connection is basically a duplex object which is readable as well as writable.
+
+It is created in two ways:
+- By the user and user as a client:
+> Either by doing `new net.Socket()` (come config options can be passed, to know more refer [here](https://nodejs.org/api/net.html#net_new_net_socket_options))
+
+> Or by doing a net.createConnection(options[, connectionListener]): This is factory method that returns a new net.Socket object and also connects to the supplied port and address.
+
+- By Node and passed to the "connection" listener.
+
+## Socket Events: Beside the usual Stream events
+
+- connect: emitted when socket connection is established successfully.
+- lookup: emitted after resolving the host name but before connecting. The callback has err, address and family agruments.
+- timeout: emitted when the socket times out from the inactivity. This is only to notify that the socket it idle. Socket has to be closed explicitly.
+- other stream related events are :'data', 'error', 'close', 'end', 'drain'.
+
+## Socket methods:
+
+- connect(port[, host][, connectionListener]): This connects the socket to the host at the specified port number. If host is empty, localhost is assumed. This is usually not needed to be called, since the net.createConnection() method automatically does this for you.
+- setEncoding([encoding])
+- write(data[, encodingType][, callback]): Similar to duplex stream's write function. The callback is executed one write is complete - which may not be immediately.
+- end([data][, encoding]): Similar to duplex stream's end(). This half-closes the socket. However the server may still send data.
+-destroy(): This ensures no more I/O on this socket.
