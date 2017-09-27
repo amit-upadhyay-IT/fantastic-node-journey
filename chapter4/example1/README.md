@@ -80,4 +80,19 @@ It is created in two ways:
 - setEncoding([encoding])
 - write(data[, encodingType][, callback]): Similar to duplex stream's write function. The callback is executed one write is complete - which may not be immediately.
 - end([data][, encoding]): Similar to duplex stream's end(). This half-closes the socket. However the server may still send data.
--destroy(): This ensures no more I/O on this socket.
+- destroy(): This ensures no more I/O on this socket.
+- pause() and resume(): Similar to non-flowing streams.
+- setTimeout(timeout[, callback]): Sets the timeout in milliseconds. THis is the idle time period of the socket after which the 'timeout' event is emitted. This is however doesn't sever connection. The optional callback becomes a one time listener to the 'timeout' event.
+- setNoDelay(Boolean): if true, disables the Nagle Algorithm (This algorithm, buffers data before sending it off)
+- setKeepAlive([enable][, initialDelay]): The keepalive packet is sent to check if the link between server and client is active or not. Set the initialDelay value to set the delay between last data packet received and the first keepAlive probe. (See http://en.wikipedia.ord/wiki/Keepalive to understand Keep Alive functionality)
+- address(): Returns the bound address of the socket.
+
+## Socket properties:
+
+- remoteAddress: Remote IP address
+- remoteFamily: IP address family of the remote IP
+- remotePort: Remote port number
+- localAddress: Local IP address
+- localPort: Local port number
+- bytesRead: Amount of bytes received
+- bytesWritten: Amount of bytes sent
