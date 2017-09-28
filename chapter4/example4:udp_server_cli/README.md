@@ -50,3 +50,77 @@ socket.on('message', function(msg, rinfo){
 
 ```
 To know more about multicasting, etc. refer [here](https://nodejs.org/api/dgram.html#dgram_socket_setmulticastttl_ttl).
+
+### Example of udp server-client communication.
+
+#### server.js
+
+```js
+var dgram = require('dgram');
+var port = 1234;
+var host = '127.0.0.1';
+
+var server = dgram.createSocket('udp4');
+
+server.on('listening', function() {
+    var address = server.address();
+    console.log('UDP Server listening on '+address.address+':'+address.port);
+});
+
+server.on('message', function(message, remote) {
+    console.log(remote.address + ':' + remote.port + ' - ' + message);
+});
+
+server.bind(port, host);
+
+```
+
+#### client.js
+
+```js
+var dgram = require('dgram');
+var port = 1234;
+var host = '127.0.0.1';
+var client = dgram.createSocket('udp4');
+
+// we need not listen to anything here as we are doing in case of server.js
+
+var message = new Buffer('Hello World!');
+
+// we directly talk to our server on the given host and port
+client.send(message, 0, message.length, port, host, function(err, bytes) {
+    if (err) throw err;
+    console.log('UDP message sent to ' + host + ':' + port);
+    client.close();
+});
+
+```
+
+#### Server output console:
+
+	[aupadhyay@localhost example4:udp_server_cli]$ node server.js 
+	UDP Server listening on 127.0.0.1:1234
+	127.0.0.1:45360 - Hello World!
+	127.0.0.1:58932 - Hello World!
+	127.0.0.1:46014 - Hello World!
+	127.0.0.1:51234 - Hello World!
+	127.0.0.1:42728 - Hello World!
+
+#### Client output console:
+
+	[aupadhyay@localhost example4:udp_server_cli]$ node client.js 
+	UDP message sent to 127.0.0.1:1234
+	[aupadhyay@localhost example4:udp_server_cli]$ node client.js 
+	UDP message sent to 127.0.0.1:1234
+	[aupadhyay@localhost example4:udp_server_cli]$ node client.js 
+	UDP message sent to 127.0.0.1:1234
+	[aupadhyay@localhost example4:udp_server_cli]$ node client.js 
+	UDP message sent to 127.0.0.1:1234
+	[aupadhyay@localhost example4:udp_server_cli]$ node client.js 
+	UDP message sent to 127.0.0.1:1234
+	[aupadhyay@localhost example4:udp_server_cli]$ 
+
+####NOTE:
+**The port ant the host on which the client is created was random**. Any random port will do.
+
+
