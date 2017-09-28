@@ -39,3 +39,14 @@ If you need to, bind a port number,
 
    ```
 
+#### To listen to socket messages, we can listen to the 'message event':
+
+Here we have 'message' event
+```js
+socket.on('message', function(msg, rinfo){
+        // mst is the message sent
+        // rinfo is the remote address information
+    });
+
+```
+To know more about multicasting, etc. refer [here](https://nodejs.org/api/dgram.html#dgram_socket_setmulticastttl_ttl).
