@@ -1,6 +1,6 @@
 ## Network Communication - TCP
 
-For network communication on Node.js, we use "net" module. The protocols which are quite important in regards of Nodejs are TCP and UDP which is being used by HTTP. So at a high level HTTP implementation at a low level  TCP and UDP implementation.
+For network communication on Node.js, we use "net" module. The protocols which are quite important in regards of Nodejs are TCP and UDP where HTTP uses TCP. So at a high level HTTP implementation at a low level  TCP and UDP implementation.
 
 ```js
 
