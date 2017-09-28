@@ -26,3 +26,9 @@ The best example for this is [Fidler](), it is basically a web debugging proxy. 
 The next level of security hacking that can happen is that when you are connected to a coffee-shop WiFi, where somebody is sniffing all your connection that is going from your machine through the router and they can identify what is happening. The tool like Fidler does exactly like that. It can inspect all your web request that leave your browser and then which goes to your server. It is inbetween the browser and your server. So this is where the Secure Socket Layer communication comes into picture. So using SSL security layer, you can send data from client to server in encrypted stream and that is what we are trying to acheive using th 'tls' module.
 
 Some of the companies only have their login page with TLS/SSl secured (i.e. https). They don't want all the pages in the application to have https. The reason is that because it takes time for encryption and decryption from the client and server, we will probably end up wasting few milliseconds on each request.
+
+[Here](https://github.com/ZiCog/node-tls-example) is a more elegant way of setting up the tls/ssl.
+
+[tls-client.js](https://github.com/ZiCog/node-tls-example/blob/master/tls-client.js)
+
+[tls-server.js](https://github.com/ZiCog/node-tls-example/blob/master/tls-server.js)
