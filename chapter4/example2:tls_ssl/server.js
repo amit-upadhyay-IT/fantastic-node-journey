@@ -2,11 +2,11 @@ var tls = require('tls'),
     fs = require('fs');
 
 var options = {
-    key: fs.readFileSync('./certificates/amit-key.pem'),
-    cert: fs.readFileSync('./certificates/amit-cert.pem'),
+    key: fs.readFileSync('./certificates/ryans-key.pem'),
+    cert: fs.readFileSync('./certificates/ryans-cert.pem'),
 
     // this is necessary only if the server uses the self-signed certificate
-    ca: [fs.readFileSync('./certificates/amit-cert.pem')]
+    ca: [fs.readFileSync('./certificates/ryans-cert.pem')]
 };
 
 tls.createServer(options, function(socket) {
