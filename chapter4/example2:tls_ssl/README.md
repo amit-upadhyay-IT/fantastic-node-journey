@@ -32,3 +32,7 @@ Some of the companies only have their login page with TLS/SSl secured (i.e. http
 [tls-client.js](https://github.com/ZiCog/node-tls-example/blob/master/tls-client.js)
 
 [tls-server.js](https://github.com/ZiCog/node-tls-example/blob/master/tls-server.js)
+
+### How does tls/ssl work?
+
+[Link](https://security.stackexchange.com/questions/20803/how-does-ssl-tls-work)
