@@ -1,24 +1,16 @@
-var readline = require('readline');
-var rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
-
-function ask()
+var inp_password = process.argv.slice(2)[0];
+if (inp_password == undefined || inp_password.length < 6)
 {
-    rl.question('Enter a password must be greater than 5 digits ', function(data) {
-        if (data.length < 6)
-        {
-            console.log('Invalid password, kindly enter again.');
-            while (data.length < 6)
-                ask();
-        }
-        rl.close();
-    });
-
+    console.log('Invalid password, it must be greater than 5 letters with no white space');
+    console.log('Restart program and try again');
+    process.exit(1);
 }
-ask();
-function makePassword32Bytes(text)
-{
 
-}
+console.log('User entered ', inp_password);
+
+var makepassword32bytes = require('./modules/makepassword32bytes.js');
+var _32bytePassword = makepassword32bytes(inp_password);
+
+console.log('Converted Password ', _32bytePassword);
+
+
