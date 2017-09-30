@@ -1,0 +1,15 @@
+{
+  "name": "encryption_decryption",
+  "version": "1.0.0",
+  "description": "encrption and decryption using a key which is entered in terminal",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "encryption",
+    "decrytion"
+  ],
+  "author": "AMIT",
+  "license": "MIT"
+}
