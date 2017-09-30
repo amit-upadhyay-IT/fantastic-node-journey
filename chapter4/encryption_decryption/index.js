@@ -6,11 +6,14 @@ if (inp_password == undefined || inp_password.length < 6)
     process.exit(1);
 }
 
-console.log('User entered ', inp_password);
-
 var makepassword32bytes = require('./modules/makepassword32bytes.js');
 var _32bytePassword = makepassword32bytes(inp_password);
 
-console.log('Converted Password ', _32bytePassword);
+var encdec = require('./modules/encdec.js');
 
+var encMessage = encdec.encrypt('Hello world', _32bytePassword);
 
+var decMessage = encdec.decrypt(encMessage, _32bytePassword);
+
+console.log('Encrypted Message ', encMessage);
+console.log('Decrypted Message ', decMessage);
