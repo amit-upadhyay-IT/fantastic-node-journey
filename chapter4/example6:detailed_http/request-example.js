@@ -1,5 +1,7 @@
 /*
  * this is an example of request stand alone, we can even integrate it with out existing http server
+ *
+ * The request module consists of all the thing we need to make these request
  * */
 
 var request = require('request');
