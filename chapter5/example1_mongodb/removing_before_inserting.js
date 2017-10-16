@@ -7,17 +7,25 @@ var user = {
     password : 'testpassword'
 };
 
-db.col1.remove({}, function (err, response) {// empty object says I need to remove all documents in collection
+function handleRemove(err, response)
+{
     if (err)
         throw err;
     console.log(response);
 
-    // after the remove is successfully done,
-    // this is also called as callback hell
-    db.col1.save(user, function (err, data) {
-        if (err)
-            throw err;
-        else
-            console.log('Saved successfully', data);
-    });
-});
+    db.col1.save(u, handleSave);
+}
+
+function handleSave(err, u)
+{
+    if (err)
+        throw err;
+    console.log('Saved successfully', u);
+}
+
+
+db.col1.remove({}, handleRemove);// empty object means I want to remove all the documents in the collection
+
+/*
+ * A more cleaner code not involving callback hell
+ * */
