@@ -59,3 +59,23 @@ The first thing which you can do is, create a project where you can talk to Mong
 When we are working with a third party software peace, we need some kind of a 'driver', or some kind of a interface that talk from our application to the other application and vice-versa.
 
 For working with node.js mongodb has a native mongodb client.
+
+#### Example:
+
+```js
+var mongojs = require('mongojs');
+var db = mongojs('amitupadhyay', ['col1']);// analogous to ('database name', ['collection1', 'collection2'...]);
+
+var user = {
+    username : 'amitupadhyay',
+    email : 'amitupadhyayemail@gmail.com',
+    password : 'testpassword'
+};
+
+db.col1.save(user, function (err, data) {
+    if (err)
+        throw err;
+    else
+        console.log('Save successfully', data);
+});
+```
