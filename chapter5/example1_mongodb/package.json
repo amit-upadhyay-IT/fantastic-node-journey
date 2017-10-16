@@ -1,0 +1,11 @@
+{
+  "name": "mongodbexample",
+  "version": "1.0.0",
+  "description": "Here I am not going to write about deep concepts of MongoDB, rather I would just write thing which are enough to work with MongoDB inside our node application.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
