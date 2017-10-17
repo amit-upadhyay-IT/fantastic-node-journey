@@ -13,7 +13,7 @@ function handleRemove(err, response)
         throw err;
     console.log(response);
 
-    db.col1.save(u, handleSave);
+    db.col1.save(user, handleSave);
 }
 
 function handleSave(err, u)
