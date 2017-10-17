@@ -1,3 +1,7 @@
+/*
+ * removing, inserting and the querying
+ * */
+
 var mongojs = require('mongojs');
 var db = mongojs('amitupadhyay', ['col1']);// analogous to ('database name', ['collection1', 'collection2'...]);
 
