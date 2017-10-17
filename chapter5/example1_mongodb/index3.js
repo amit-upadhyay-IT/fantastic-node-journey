@@ -30,12 +30,27 @@ db.col1.remove({}, function (err, data) {
         console.log('Inserted\n', data);
         console.log('----------------------');
 
-        db.col1.find({username: 'amitupadhyay'}, function (err, userArray) {// userArray is always an array even if there is only one document which matches in collection
+        // if we use just find() function, then the data in the callback is always an array of matched documents in the collection and it doesn't matter on the number of matches.
+        // if we use findOne(), the data (2nd argument) in the callback is not an array but just one JSON object.
+        db.col1.findOne({username: 'amitupadhyay'}, function (err, userOne) {
             if (err)
                 throw err;
             console.log('find query');
-            console.log(userArray);
+            console.log(userOne);
             console.log('----------------------');
+
+            db.col1.update(
+                {
+                    username : 'amitupadhyay'
+                },
+                {
+                    password : 'changedPassword'
+                }, function (err, respon) {
+                    if (err)
+                        throw err;
+                    console.log('Update status ', respon);
+                    console.log('----------------------------');
+                });
         });
     });
 });
