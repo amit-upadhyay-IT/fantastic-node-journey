@@ -44,11 +44,11 @@ db.col1.remove({}, function (err, data) {
                     username : 'amitupadhyay'
                 },
                 {
-                    password : 'changedPassword'
+                    password : 'changedPassword'// here note that the whole document with name:amitupadhyay is going to be replaced with password:changedPassword, because here I haven't used upsert (i.e. update and insert)
                 }, function (err, respon) {
                     if (err)
                         throw err;
-                    console.log('Update status ', respon);
+                    console.log('Update status\n', respon);
                     console.log('----------------------------');
                 });
         });
