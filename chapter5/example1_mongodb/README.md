@@ -79,3 +79,144 @@ db.col1.save(user, function (err, data) {
         console.log('Save successfully', data);
 });
 ```
+### Example: removing everything before inserting
+
+```js
+var mongojs = require('mongojs');
+var db = mongojs('amitupadhyay', ['col1']);// analogous to ('database name', ['collection1', 'collection2'...]);
+
+var user = {
+    username : 'amitupadhyay',
+    email : 'amitupadhyayemail@gmail.com',
+    password : 'testpassword'
+};
+
+function handleRemove(err, response)
+{
+    if (err)
+        throw err;
+    console.log(response);
+
+    db.col1.save(user, handleSave);
+}
+
+function handleSave(err, u)
+{
+    if (err)
+        throw err;
+    console.log('Saved successfully', u);
+}
+
+
+db.col1.remove({}, handleRemove);// empty object means I want to remove all the documents in the collection
+
+/*
+ * A more cleaner code not involving callback hell
+ * */
+
+```
+
+### removing, inserting and the querying
+
+```js
+
+var mongojs = require('mongojs');
+var db = mongojs('amitupadhyay', ['col1']);// analogous to ('database name', ['collection1', 'collection2'...]);
+
+var user = [
+    {
+        username : 'amitupadhyay',
+        email : 'amitupadhyayemail@gmail.com',
+        password : 'testpassword'
+    },
+    {
+        username: 'developerupadhyay',
+        email : 'developerupadhyay@gmail.com',
+        password : 'anotherpassword'
+    }
+];
+
+
+db.col1.remove({}, function (err, response) { // empty object means I want to remove all the documents in the collection
+
+    if (err)
+        throw err;
+    console.log(response);
+
+    db.col1.save(user, function (err, u) {
+        if (err)
+            throw err;
+
+        // once the user is saved I want to query that particular user;
+
+        db.col1.find({}, function (err, users) {//I am gonna find everything so I pass an empty object
+            if (err)
+                throw err;
+            console.log(users);
+        });
+    });
+});
+
+/*
+ * The difference which you can see in index.js and this file is that, this time the data which you received is an array.
+ * */
+```
+
+### removing, inserting, querying and updating
+
+```js
+
+var mongojs = require('mongojs');
+var db = mongojs('amitupadhyay', ['col1']); // analogous to ('database name', ['collection1', 'collection2', ...])
+
+var users = [
+    {
+        username : 'amitupadhyay',
+        email : 'amitupadhyayemail@gmail.com',
+        password : 'testpassword'
+    },
+    {
+        username : 'developerupadhyay',
+        email : 'developerupadhyay@gmail.com',
+        password : 'devPassword'
+    }
+];
+
+db.col1.remove({}, function (err, data) {
+    if (err)
+        throw err;
+    console.log('Removed\n', data);
+    console.log('----------------------');
+
+    db.col1.save(users, function (err, data) {
+        if (err)
+            throw err;
+        console.log('Inserted\n', data);
+        console.log('----------------------');
+
+        // if we use just find() function, then the data in the callback is always an array of matched documents in the collection and it doesn't matter on the number of matches.
+        // if we use findOne(), the data (2nd argument) in the callback is not an array but just one JSON object.
+        db.col1.findOne({username: 'amitupadhyay'}, function (err, userOne) {
+            if (err)
+                throw err;
+            console.log('find query');
+            console.log(userOne);
+            console.log('----------------------');
+
+            db.col1.update(
+                {
+                    username : 'amitupadhyay'
+                },
+                {
+                    password : 'changedPassword1'// here note that the whole document with name:amitupadhyay is going to be replaced with password:changedPassword, because here I haven't used upsert (i.e. update and insert)
+                }, function (err, respon) {
+                    if (err)
+                        throw err;
+                    console.log('Update status\n', respon);
+                    console.log('----------------------------');
+                });
+        });
+    });
+});
+
+```
