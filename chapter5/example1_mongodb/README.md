@@ -79,6 +79,15 @@ db.col1.save(user, function (err, data) {
         console.log('Save successfully', data);
 });
 ```
+The way we provide the mongodb connection string is `mongodb://localhost:27017/db_name`
+
+If you are using mongojs, you can directly use the 'db_name' instead of writing 'mongodb://localhost:27017/db_name'. Suppose that the mongodb is hosted on `192.168.0.1` and it is not running on the same port on that particular pc, then we can use this connection string,
+
+`
+mongodb://192.168.0.1:27018/db_name
+`
+So we can say that if our mongodb is running on localhost:27017, we need not provide the long connection string, we can directly write the db_name.
+
 ### Example: removing everything before inserting
 
 ```js
