@@ -1,0 +1,14 @@
+{
+  "name": "example2_mongodb_on_cloud",
+  "version": "1.0.0",
+  "description": "There is a server called as mongolab (mlab.com), this is database as a service (i.e. MongoDB as a service). This is a cloud based service of MongoDB and they have a free tier available.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongojs": "^2.4.1"
+  }
+}
