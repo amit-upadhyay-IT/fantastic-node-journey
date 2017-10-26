@@ -97,3 +97,26 @@ silence.save(function (err) {
     console.log('meow');
 });
 ```
+
+So using 'mongoose', you can interact with MongoDB the same way how you did it with `mongojs` or the native `mongodb` driver.
+
+Using Mongoose, you can add functions to your documents. Let's take a look at how to add "speak" functionality to our documents:
+
+```js
+// NOTE: methods must be added to the schema before compiling it with mongoose.model()
+kittySchema.methods.speak = function () {
+  var greeting = this.name
+    ? "Meow name is " + this.name
+    : "I don't have a name";
+  console.log(greeting);
+}
+
+var Kitten = mongoose.model('Kitten', kittySchema);
+```
+Functions added to the methods property of a schema get compiled into the Model prototype and exposed on each document instance:
+```js
+var fluffy = new Kitten({ name: 'fluffy' });
+fluffy.speak(); // "Meow name is fluffy"
+```
+
+This functionality can be used in a way that once we have the instances then we can provide method on them which can do validation checks (and things like that).
