@@ -5,12 +5,14 @@ People are so much into working with RDBMS, so we end up converting a NoSQL data
 Consider an example where you want to build database for Employee,
 
 So you will have these many tables associated with your Employees table
+```
 Employees
     PersonalInfo
     AcademicInfo
     PayScale
     JobDesc
     DailyProjectTask
+```
 
 So, we have these bunch of tables associated with the Employees table where everything is related with primary key, foreign key relation.
 
