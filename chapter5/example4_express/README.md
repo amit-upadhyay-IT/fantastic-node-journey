@@ -24,10 +24,9 @@ The setup for express application is pretty simple. The amount of coding we need
 
 Example 2:
 
-creating the JSON data end point, where I am sending the data back to the client.
+Creating the JSON data end point, where I am sending the data back to the client.
 
 ```js
-// creating the JSON data end point, where I am sending the data back to the client
 app.get('/api/data', function (req, res) {
 
     res.json({
@@ -36,7 +35,7 @@ app.get('/api/data', function (req, res) {
 });
 ```
 
-If you do a GET on url `http://localhost:3000/api/data`, then you can see the response which is a JSON object. Try to do a GET request using POSTMAN to see the Headers.
+If you do a GET on url `http://localhost:3000/api/data`, then you can see the response (which is a JSON object). Try to do a GET request using POSTMAN to see the Headers.
 
 ```
 connection →keep-alive
@@ -47,3 +46,49 @@ etag →W/"11-IkjuL6CqqtmReFMfkkvwC0sKj04"
 x-powered-by →Express
 ```
 are the headers for the GET request. The content-type is `application/json` already (we didn't set this in the code).
+
+So you can see in less then a minute we can build api server ground up with a couple of commands.
+
+Example 3:
+
+Making an api server which fetches data form the mongodb cloud server and gives it as response to the client.
+
+```js
+var express = require('express');
+
+var mongojs = require('mongojs');
+var db = mongojs('mongodb://adminamit:amit123@ds121955.mlab.com:21955/amitmongodb', ['users']);// connecting to cloud db to get the list of users
+
+
+var app = express();
+
+app.get('/', function (req, res) {
+    res.send('You are at /');
+});
+
+app.get('/api/v1/users', function (req, res) {
+
+    // here we are going to go to mongodb and whenever a user hits on /api/v1/users I am going to query the could interface and find all the records
+    db.users.find({}, function (err, docs) {
+        if (err)
+        {
+            res.status(500);
+            res.send({
+                err: new Error(err)
+            });
+        }
+        else
+        {
+            res.json (docs);
+        }
+    });
+});
+
+var server = app.listen(2000, function () {
+
+    var host = server.address().address;
+    var port = server.address().port;
+
+    console.log('Example app listening at http://%s:%s', host, port);
+});
+```
