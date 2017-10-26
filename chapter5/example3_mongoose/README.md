@@ -32,4 +32,32 @@ Mongojs is for connecting your database with your application and then extractin
 
 Mongoose is an ODM tool which takes care of managing your object modelling in nodejs for your application. Now you can use Mongoose api to work with your MongoDB.
 
-Now we bring the concept of Model.
+In Mongoose one important concept is `Model`. A model is like a schema which defines how things should work.
+
+Example:
+
+```js
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/test', { useMongoClient: true });
+mongoose.Promise = global.Promise;
+
+var Cat = mongoose.model('Cat', { name: String });
+```
+
+`Cat` is a model here. The second argument are the properties that the model is going to have. Here we have `name` as the property which is typed as String.
+
+```js
+// creating new instance of the Cat model
+var kitty = new Cat({ name: 'Zildjian' });
+
+// saving it.
+kitty.save(function (err) {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log('meow');
+  }
+});
+```
+
+`kitty` is a new instance of the `Cat` model.

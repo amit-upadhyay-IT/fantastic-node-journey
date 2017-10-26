@@ -1,0 +1,14 @@
+{
+  "name": "mongoose example",
+  "version": "1.0.0",
+  "description": "People are so much into working with RDBMS, so we end up converting a NoSQL database into a SQL structure.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "amit",
+  "license": "MIT",
+  "dependencies": {
+    "mongoose": "^4.12.4"
+  }
+}
