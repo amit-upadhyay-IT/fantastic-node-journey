@@ -100,6 +100,7 @@ People generally don't want to put their routes inside their main file (index.js
 
 See [this](./index4.js) file. It is the main file index4.js and it is calling function written in routes.js file. The routes.js file looks like this:
 
+```js
 var mongojs = require('mongojs');
 var db = mongojs('mongodb://adminamit:amit123@ds121955.mlab.com:21955/amitmongodb', ['users']);// connecting to cloud db to get the list of users
 
@@ -129,3 +130,6 @@ module.exports = function (app) {// this function takes app as its argument
 
     return app;
 };
+```
+
+Next you can separate your db configuration using another file (./dbconfig.js). So we are trying t modularize our code into peace.
