@@ -92,3 +92,40 @@ var server = app.listen(2000, function () {
     console.log('Example app listening at http://%s:%s', host, port);
 });
 ```
+This is typically an end to end api interface which is just build using express mongodb and nodejs
+
+----------------
+
+People generally don't want to put their routes inside their main file (index.js). So for that purpose we create a new file generally named as `routs.js`. In this file we define all the routes to the application.
+
+See [this](./index4.js) file. It is the main file index4.js and it is calling function written in routes.js file. The routes.js file looks like this:
+
+var mongojs = require('mongojs');
+var db = mongojs('mongodb://adminamit:amit123@ds121955.mlab.com:21955/amitmongodb', ['users']);// connecting to cloud db to get the list of users
+
+module.exports = function (app) {// this function takes app as its argument
+
+    app.get('/', function (req, res) {
+        res.send('You are at /');
+    });
+
+    app.get('/api/v1/users', function (req, res) {
+
+        // here we are going to go to mongodb and whenever a user hits on /api/v1/users I am going to query the could interface and find all the records
+        db.users.find({}, function (err, docs) {
+            if (err)
+            {
+                res.status(500);
+                res.send({
+                    err: new Error(err)
+                });
+            }
+            else
+            {
+                res.json (docs);
+            }
+        });
+    });
+
+    return app;
+};
