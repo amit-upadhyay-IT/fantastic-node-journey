@@ -31,3 +31,5 @@ If you run this command, it creates entire expressjs project for you. i.e. it sc
 `
 
 If you see content of package.json, you will find several dependencies already added into it. So the whole package.json was scaffolded as the part of generator. Then you can see the contents of app.js.
+
+By default when you write `express` to generate files you get a `jade` template engine.
