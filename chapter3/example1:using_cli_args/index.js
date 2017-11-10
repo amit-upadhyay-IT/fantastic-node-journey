@@ -1,6 +1,6 @@
-var checkpackage = require('../../../checkpackage/index.js');
+//var checkpackage = require('../../../checkpackage/index.js');
 
-// checkpackage = require('checkpackage');
+checkpackage = require('checkpackage');
 
 var name = process.argv.slice(2)[0];
 
