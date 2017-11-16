@@ -6,6 +6,9 @@ app.get('/players', function (req, res) {
     var query = req.query;
 
     console.log('Query value: '+ JSON.stringify(query));
+    res.write('Name = '+ query.name);
+    res.end('\nAge = '+query.age);
+    res.end('This statement should not go to the response');
 
     res.end(JSON.stringify(query));
 });

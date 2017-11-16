@@ -1,10 +1,12 @@
 How are parameters are passed in a typical get request from the browser to the web server?
 Below is an example of get request:
 ```
-localhost:3000/players/?batsman="satchin"&country="india"&year=1993
+http://localhost:4000/players/?name=%22amit%20upadhyay%22&age=19&year=2016
 ```
 
 You can see how the request params are passed in the above get request.
+
+How node.js applications can get to those parameters?
 
 Sometimes the developer may need to access these parameters for their purpose. Below is a program which illustrates the same.
 
@@ -28,6 +30,22 @@ app.listen(port, function (){
 });
 ```
 
-**NOTE**: As far as Express is concered
+**NOTE**: As far as Express is concered `req.query` is all which is required to get the request parameters in our program. Supposing that we had a `http` server using the `http` core module, then to get the request params we need to get the url using `req.url` then parse it.
 
-How node.js applications can get to those parameters?
+And that can be done like this:
+
+```js
+var url = require('url');
+var url_parts = url.parse(request.url, true);
+var query = url_parts.query;
+```
+
+However, in expressjs it's already done for you and you can simply use `req.query` for that.
+
+**NOTE** : when we use end() method then we can't display any further messages on web page.
+
+So, we sould use `res.write();` unless required to use `res.end();`.
+
+Example:
+
+
