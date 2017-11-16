@@ -4,7 +4,7 @@ var app = exp();
 
 app.get('/players/:name/:age', function (req, res) {
 
-    // in the case query isn't required because the values will be coming directly from the path only
+    // in this case query isn't required because the values will be coming directly from the path only
 
     res.write('name = '+ req.params.name);
     res.end('\nage = '+ req.params.age);

@@ -1,5 +1,6 @@
 How are parameters are passed in a typical get request from the browser to the web server?
 Below is an example of get request:
+
 ```
 http://localhost:4000/players/?name=%22amit%20upadhyay%22&age=19&year=2016
 ```
@@ -66,3 +67,29 @@ Example:
 ```http://localhost:4000/players/amit/19/2016```
 
 Thus we need to make a protocol that whatever is passed after players is name and after that we have age. So for analyzing that kind of request we need to write a different application.
+
+Example:
+
+```js
+var exp = require('express');
+
+var app = exp();
+
+app.get('/players/:name/:age', function (req, res) {
+
+    // in this case query isn't required because the values will be coming directly from the path only
+
+    res.write('name = '+ req.params.name);
+    res.end('\nage = '+ req.params.age);
+});
+
+var port = process.env.PORT || 4000;
+
+app.listen(port, function () {
+    console.log('Server is listening on port ' + port);
+});
+```
+
+These are positional parameters so position is very important. On executing this you will get the desired. Also, after executing the code when you enter the url as : ```http://localhost:4000/players/amit/19/2016``` you will not get a correct/desired output. Because there is one additional parameter and that is 2016 for which we haven't made the `get()` request.
+
+These days this is more prevalent way of passing parameters in get request, we need not pass key value but we pass different values separated by `/`. We will be using this another application very soon when we will learn about templates. So in this application and the previous application the objective way to let you know how url parameters are passed in a application and how they are accessed on the server side. Based on that you can do something and return the response appropriately.
