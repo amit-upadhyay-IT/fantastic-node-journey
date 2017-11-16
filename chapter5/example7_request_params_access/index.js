@@ -10,7 +10,6 @@ app.get('/players', function (req, res) {
     res.end('\nAge = '+query.age);
     res.end('This statement should not go to the response');
 
-    res.end(JSON.stringify(query));
 });
 
 var port = process.env.PORT || 4000;

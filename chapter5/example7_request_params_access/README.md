@@ -46,6 +46,23 @@ However, in expressjs it's already done for you and you can simply use `req.quer
 
 So, we sould use `res.write();` unless required to use `res.end();`.
 
+#### Example:
+
+```js
+res.write('Name = '+ query.name);
+res.end('\nAge = '+query.age);
+res.end('This statement should not go to the response');
+```
+
+You can try running the code and see the output on your web browser.
+
+
+Okay, so this is way in which you can pass any url parameters in node.js applications and this is how you can retrieve all the values. But this is just one method and there are several other methods to achieve the same thing. So lets see another way to perform same task.
+
+The **advantage of using this technique of passing url parameter** is that in this way I've freedom of passing the arguments in any order. i.e. first I can pass the age and the name. Still the result will be same. Also we are passing things in a key value pair.
+
+There can be other ways of passing the url.
 Example:
+```http://localhost:4000/players/amit/19/2016```
 
-
+Thus we need to make a protocol that whatever is passed after players is name and after that we have age. So for analyzing that kind of request we need to write a different application.
