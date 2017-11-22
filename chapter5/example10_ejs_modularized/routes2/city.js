@@ -7,7 +7,7 @@ router.get('/', function(req, res, next) {
     var title,heading;
     var imageCount=4;
 
-    res.write(cityName);
+    //res.send(cityName);
 
     if(cityName==='berlin'){
        title="Berlin";
