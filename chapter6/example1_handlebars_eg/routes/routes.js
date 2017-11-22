@@ -8,7 +8,7 @@ exports.logoutHandler = function (req, res) {
     res.render('login.handlebars', {LOGGEDIN:false});
 }
 
-exports.landingPage = function (req, res) {
+exports.landingPageHandler = function (req, res) {
     req.session.loggedin = true;
 
     var person;
