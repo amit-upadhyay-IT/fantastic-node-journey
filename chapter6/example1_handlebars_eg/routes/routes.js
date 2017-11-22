@@ -46,14 +46,14 @@ exports.cityPageHandler = function (req, res) {
     }
     else if (interestValue === 'fashion')
     {
-        cityNameValue = 'Pairs';
-        taglineValue = 'The faishon capital of the world';
+        cityNameValue = 'Paris';
+        taglineValue = 'The fashion capital of the world';
         imageArray = [1, 2, 3];
     }
     else if (interestValue = 'finance')
     {
-        cityNameValue = 'Frankfurt';
-        taglineValue = 'The business capital of Germany';
+        cityNameValue = 'New York';
+        taglineValue = 'The business capital of World';
         imageArray = [1, 2, 3, 4, 5, 6];
     }
 

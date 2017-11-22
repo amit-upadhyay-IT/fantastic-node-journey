@@ -9,10 +9,11 @@ var app = express();
 app.set('view engine', 'handlebars');/*while using handlebars you need to write one more line which wasn't required when we were using ejs*/
 app.engine('handlebars', hbars({defaultLayout:'layout'}));/*here we specify how handlebars should be initialized, its like when the first instance of handlebars is created do you want to init with something or not. If our application doesn't using any layout page then we pass empty object.*/
 
-app.use(express.static(_dirname + '/public'));
+app.use(express.static(__dirname + '/public'));
 
 // body-parser
-app.use(bodyparser());// deprecated
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({extended:false}));
 
 // session handling
 app.use(session (
