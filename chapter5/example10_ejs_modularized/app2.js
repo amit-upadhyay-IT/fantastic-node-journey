@@ -2,12 +2,13 @@ var exp = require("express");
 
 var app = exp();
 
-var routes = require('./routes/route.js');
+var home = require('./routes2/home');
+var city = require('./routes2/city');
 
 app.set('view engine', 'ejs');
 
-app.get('/', routes.home);
-app.get('/:city', routes.city);
+app.use('/', home);
+app.use('/:city', city);
 
 var port = process.env.PORT || 5000;
 

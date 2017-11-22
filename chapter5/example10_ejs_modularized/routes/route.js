@@ -1,8 +1,9 @@
-var express = require('express');
-var router = express.Router();
+exports.home=function(req,res){
+  res.render('home',{title:'iLoveMyCity', headline:'We believe that every city have something to say'});
+}
 
-/* GET city listing. */
-router.get('/', function(req, res, next) {
+
+exports.city=function(req,res){
     var cityName=req.params.city;
     var title,heading;
     var imageCount=4;
@@ -35,6 +36,4 @@ router.get('/', function(req, res, next) {
         city:cityName,
         numberOfImages:imageCount
   });
-});
-
-module.exports = router;
+}
