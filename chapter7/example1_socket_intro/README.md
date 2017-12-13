@@ -90,6 +90,61 @@ You need no worry about setting up the web socket connections or anything. You j
 ```
 to your client.
 
-Above you can see, we are refering to a script `/socket.io/socket.io.js`. Remember we never created this script. Automatically this file gets dispatched by the socket.io module. The we get the `io` class (`var socket = io();`) which returns a socket object with which you can interact with the current server in which your socket is setup.
+Above you can see, we are refering to a script `/socket.io/socket.io.js`. Remember we never created this script. Automatically this file gets dispatched by the socket.io module. Then we get the `io` class (`var socket = io();`) which returns a socket object with which you can interact with the current server in which your socket is setup.
+
+
+Now if you open the developer tools in your chat client, in the network tab you can see request comming from `socket.io.js`. It means everything is correctly setup and the socket has started interacting with the server.
+
+
+Now every single time a user is connected a message is invoked. Lets bind a `disconnect` event on every single connection.
+
+```js
+io.on('connection', function(socket){
+  console.log('a user connected');
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+  });
+});
+```
+When the user leaves the page, the `disconnect` event is triggered. So now you know when the resource is unloaded completely.
+
+### Emitting events (to server)
+
+The main idea behind Socket.IO is that you can send and receive any events you want, with any data you want. Any objects that can be encoded as JSON will do, and binary data is supported too.
+
+Lets add some jQuery to send message value and manage.
+
+Example:
+
+```js
+<script src="/socket.io/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+  $(function () {
+    var socket = io();
+    $('form').submit(function(){
+      socket.emit('chat message', $('#m').val());
+      $('#m').val('');
+      return false;
+    });
+  });
+</script>
+```
+
+We are calling the `emit` method on the socket object. The method has the name of the channel, `chat message` is a channel in your socket list of connections. The data in `#m` is sent to the `chat message` (this jQuery does so: $('#m').val()). Once the message is sent we clear the text box on the client side (`$('#m').val('');`).
+
+Lets create a listener on server side:
+
+```js
+  socket.on('chat message', function(msg){
+    console.log('message: ' + msg);
+  });
+```
+The above code snippet will take care of printing on console whatever message is being sent from the client.
+
+
+
+
+
 
 
