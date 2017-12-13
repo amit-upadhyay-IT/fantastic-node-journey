@@ -142,9 +142,65 @@ Lets create a listener on server side:
 ```
 The above code snippet will take care of printing on console whatever message is being sent from the client.
 
+### Broadcasting
+
+Once one client sends message to a given server, then you should be able to broadcast it to other connections as well (that's what the whole point of a chat). In the server we are just logging the message on the console. Now lets broadcast it.
+
+In order to send an event to everyone, Socket.IO gives us the `io.emit`:
+
+```js
+io.emit('some event', { for: 'everyone' });
+```
+
+If you want to send a message to everyone except for a certain socket, we have the broadcast flag:
+
+```js
+io.on('connection', function(socket){
+  socket.on('chat message', function(msg){
+    io.emit('chat message', msg);
+  });
+});
+```
+
+So above we have replaced the `console.log()` with `io.emit('chat message', msg);` It means, as soon as the server receives the message, emit it to all the clients which are connected to the current server.
+
+Now in our client side code we just have the emit method which is emitting to the `chat message`, lets have `on` method which will take care for receiving the message.
+
+Example:
+
+```html
+    socket.on('chat message', function(msg){
+      $('#messages').append($('<li>').text(msg));
+    });
+```
+
+The full index.js code would now look like:
+
+```js
+var app = require('express')();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
+app.get('/', function(req, res){
+  res.sendFile(__dirname + '/index.html');
+});
 
 
+io.on('connection', function(socket){
+  console.log('a user connected');
+
+  socket.on('chat message', function(msg){
+    console.log('chat message:', msg);
+    io.emit('chat message', msg);
+  });
+
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
+  });
+});
 
 
-
-
+http.listen(3000, function(){
+  console.log('listening on *:3000');
+});
+```
