@@ -1,0 +1,21 @@
+#include<iostream>
+#include<stdio.h>
+#include<string.h>
+
+class A
+{
+
+    public:
+        void display()
+        {
+            std::cout<<"heiillksdaf\n";
+        }
+
+};
+
+int main()
+{
+    A *o = NULL;
+    o->display();
+    return 0;
+}
